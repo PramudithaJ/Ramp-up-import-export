@@ -11,6 +11,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 import { CarRecordsService } from './car-records/car-records.service';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -32,7 +33,7 @@ import { CarRecordsService } from './car-records/car-records.service';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-   CarExportModule, CarImportModule, CarRecordsModule,],
+   CarExportModule, CarImportModule, CarRecordsModule, NotificationModule,],
   controllers: [AppController],
   providers: [AppService],
   

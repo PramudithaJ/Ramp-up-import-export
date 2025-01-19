@@ -2,6 +2,7 @@ import { InjectQueue } from '@nestjs/bull';
 import { Injectable } from '@nestjs/common';
 import { Queue } from 'bull';
 import { createObjectCsvStringifier } from 'csv-writer';
+import { delay } from 'rxjs';
 import { CarRecord } from 'src/car-records/entities/car-record.entity';
 
 
@@ -30,6 +31,7 @@ export class CarExportService {
     
     
 generateCsv(cars: CarRecord[]): string {
+    
     console.log("started generating CSV")
     const csvStringifier = createObjectCsvStringifier({
         header: [
@@ -44,7 +46,7 @@ generateCsv(cars: CarRecord[]): string {
         { id: 'ageOfVehicle', title: 'Age of Vehicle' },
         ],
     });    
-
+    
     return csvStringifier.stringifyRecords(cars);
 
 }
